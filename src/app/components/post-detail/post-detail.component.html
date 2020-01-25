@@ -1,0 +1,7 @@
+<div class="col-md-12" *ngIf="!post">
+Cargando...
+</div>
+<div class="col-md-12" *ngIf="post">
+	<h1>{{post.title}}</h1>
+	{{post.content}}
+</div>

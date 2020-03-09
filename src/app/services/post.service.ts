@@ -21,7 +21,6 @@ export class PostService {
     create(token, post): Observable<any>{
     	let json = JSON.stringify(post);
     	let params = "json="+json;
-
     	let headers = new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded')
     	                               .set('Authorization',token);
 

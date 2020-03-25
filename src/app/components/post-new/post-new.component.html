@@ -1,7 +1,8 @@
 <div class="col-md-12 mt-3">
 <h1>{{page_title}}</h1>
 
-    <p>Añade un nuevo articulo al blog</p>    
+    <p *ngIf="!is_edit">Añade un nuevo articulo al blog</p>    
+    <p *ngIf="is_edit">Edita el post</p>    
     <hr/>
 	<div class="alert alert-success col-md-5 mt-3" *ngIf="status == 'success'">
         El post se han guardado correctamente.

@@ -9,12 +9,11 @@ import { global } from '../../services/global';
 
 
 @Component({
-  selector: 'app-post-new',
-  templateUrl: './post-new.component.html',
-  styleUrls: ['./post-new.component.css'],
-  providers:[ UserService,CategoryService, PostService]
+  selector: 'app-post-edit',
+  templateUrl: '../post-new/post-new.component.html',
+  providers:[ UserService, CategoryService, PostService]
 })
-export class PostNewComponent implements OnInit {
+export class PostEditComponent implements OnInit {
 	public page_title: string;
 	public identity;
 	public token;
@@ -22,7 +21,7 @@ export class PostNewComponent implements OnInit {
 	public post: Post;
 	public categories;
 	public status;
-  public attachPinText1: string;
+  public is_edit: boolean;
 	public froala_options : Object = {
         charCounterCount: true,
 	    toolbarButtons: ['bold', 'italic', 'underline', 'paragraphFormat','alert'],
@@ -54,16 +53,17 @@ export class PostNewComponent implements OnInit {
   	private _categoryService: CategoryService,
   	private _postService: PostService) 
   {
-    this.page_title = 'Crear una entrada';
+    this.page_title = 'Editar entrada';
     this.identity = this._userService.getIdentity();
     this.token = this._userService.getToken();
+    this.is_edit = true;
   }
 
   ngOnInit() {
-  	this.post = new Post(1, this.identity.sub, 1, '', '', null, null);
-  	console.log(this.identity);
   	this.getCategories();
-
+  	this.post = new Post(1, this.identity.sub, 1, '', '', null, null);
+    this.getPost();
+    //console.log(this.identity);
   	//console.log(this.post);
   }
 
@@ -104,6 +104,33 @@ export class PostNewComponent implements OnInit {
   			console.log(error);
   			this.status = 'error';
   		});
+  }
+
+  getPost(){
+   this._route.params.subscribe(
+     params => {
+       let id = +params['id'];
+
+       this._postService.getPost(id).subscribe(
+         response => {
+           if(response.status == 'success'){
+             this.post = response.posts;
+           }else{
+             this._router.navigate(['/inicio']);
+           }
+
+         },
+         error => {
+           this._router.navigate(['/inicio']);
+           console.log(error);
+         }
+
+       );
+     }
+     );
+   
+   //peticion ajax para sacar los datos
+
   }
 
 }

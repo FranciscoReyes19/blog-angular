@@ -17,7 +17,12 @@
 .card-header a{
 	color: #444;
 }
-.post-image{
-	height: 200px;
+.post-image img{
+	width: 100%;
+	max-height: 300px;
 	overflow: hidden;
+}
+footer{
+	margin-top: 50px;
+	color:Lightgray;
 }

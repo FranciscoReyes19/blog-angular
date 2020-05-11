@@ -40,6 +40,10 @@
 		</div>
 		<div class="form-group">
 			<label for="image">Imagen</label>
+			<div *ngIf='post.image' class="post-img">
+				<img src="{{urlAux + 'post/image/' + post.image}}">
+			</div>
+			<hr>
 			<angular-file-uploader
 				[config]="afuConfig"
 				[resetUpload]=resetVar

@@ -17,6 +17,10 @@ import { CategoryNewComponent } from './components/category-new/category-new.com
 import { PostNewComponent } from './components/post-new/post-new.component';
 import { PostDetailComponent } from './components/post-detail/post-detail.component';
 import { PostEditComponent } from './components/post-edit/post-edit.component';
+import { CategoryDetailComponent } from './components/category-detail/category-detail.component';
+
+import { UserService } from './services/user.service';
+import {IdentityGuard} from './services/identity.guard';
 
 @NgModule({
   declarations: [
@@ -29,7 +33,8 @@ import { PostEditComponent } from './components/post-edit/post-edit.component';
     CategoryNewComponent,
     PostNewComponent,
     PostDetailComponent,
-    PostEditComponent
+    PostEditComponent,
+    CategoryDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +46,9 @@ import { PostEditComponent } from './components/post-edit/post-edit.component';
     AngularFileUploaderModule
   ],
   providers: [
-    appRoutingProviders
+    appRoutingProviders,
+    IdentityGuard,
+    UserService
   ],
   bootstrap: [AppComponent]
 })

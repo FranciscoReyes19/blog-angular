@@ -14,6 +14,10 @@
 	height: 40px;
 	width: 40px;
 }
+.post-img img{
+	height: 180px;
+	width: 180px;
+}
 .card-header a{
 	color: #444;
 }

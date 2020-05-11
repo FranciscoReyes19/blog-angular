@@ -7,7 +7,6 @@ import { Post } from '../../models/post';
 import { global } from '../../services/global';
 
 
-
 @Component({
   selector: 'app-post-new',
   templateUrl: './post-new.component.html',
@@ -19,6 +18,7 @@ export class PostNewComponent implements OnInit {
 	public identity;
 	public token;
 	public url;
+  public urlAux;
 	public post: Post;
 	public categories;
 	public status;
@@ -44,7 +44,7 @@ export class PostNewComponent implements OnInit {
         hideProgressBar: false,
         hideResetBtn: true,
         hideSelectBtn: false,
-        attachPinText: 'Sube tu imagen'
+        attachPinText: 'Sube tu imagen/Cambiar'
       };
 
   constructor(
@@ -63,8 +63,6 @@ export class PostNewComponent implements OnInit {
   	this.post = new Post(1, this.identity.sub, 1, '', '', null, null);
   	console.log(this.identity);
   	this.getCategories();
-
-  	//console.log(this.post);
   }
 
   getCategories(){
@@ -78,7 +76,6 @@ export class PostNewComponent implements OnInit {
   		},
 	  		error => {
 	  			console.log(error);
-
 	  		}
   		);
   }
@@ -89,6 +86,9 @@ export class PostNewComponent implements OnInit {
   }
   
   onSubmit(form){
+    //console.log(this.post);
+    //Nota:bug06052020;no se podia crear nueva entrada porque la imagen estaba undefined,
+    //hasta que se hizo una prueba de cambio de imagen de perfil y soluciono la creacion de una entrada(image ya no es undefined)
   	this._postService.create(this.token,this.post).subscribe(
   		response => {
   			if (response.status == 'success') {

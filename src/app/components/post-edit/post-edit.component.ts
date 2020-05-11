@@ -18,6 +18,7 @@ export class PostEditComponent implements OnInit {
 	public identity;
 	public token;
 	public url;
+  public urlAux;
 	public post: Post;
 	public categories;
 	public status;
@@ -43,7 +44,7 @@ export class PostEditComponent implements OnInit {
         hideProgressBar: false,
         hideResetBtn: true,
         hideSelectBtn: false,
-        attachPinText: 'Sube tu imagen'
+        attachPinText: 'Sube tu imagen/Cambiar'
       };
 
   constructor(
@@ -57,6 +58,7 @@ export class PostEditComponent implements OnInit {
     this.identity = this._userService.getIdentity();
     this.token = this._userService.getToken();
     this.is_edit = true;
+    this.urlAux = global.url;
   }
 
   ngOnInit() {
@@ -89,12 +91,15 @@ export class PostEditComponent implements OnInit {
   }
   
   onSubmit(form){
-  	this._postService.create(this.token,this.post).subscribe(
+    console.log(this.post);
+  	this._postService.update(this.token,this.post, this.post.id).subscribe(
   		response => {
   			if (response.status == 'success') {
-  				this.post = response.post;
   				this.status = 'success';
-  				this._router.navigate(['/inicio']);
+  				//this.post = response.post;
+          //Bug; al modificar imagen si se presiona "modificar" 
+          //muy pronto no se realiza la actualizacion, hasta el siguiente intento
+  				this._router.navigate(['/entrada', this.post.id]);
   			}else{
   				this.status = 'error';
   			}
@@ -128,9 +133,7 @@ export class PostEditComponent implements OnInit {
        );
      }
      );
-   
    //peticion ajax para sacar los datos
-
   }
 
 }

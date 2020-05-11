@@ -1,6 +1,6 @@
 <div class="container"> <!-- CONTENEDOR PRINCIPAL -->
-<nav class="navbar navbar-expand-lg navbar navbar-dark bg-primary"><!-- BARRA DE NAVEGACION -->
-  <a class="navbar-brand" href="#">
+<nav class="navbar navbar-expand-lg navbar navbar-dark bg-secondary"><!-- BARRA DE NAVEGACION -->
+  <a class="navbar-brand" [routerLink]="['/inicio']">
   <img src="/assets/images/angular.png" width="30" height="30" class="d-inline-block align-top" alt="">
   Blog Master PHP</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -13,7 +13,7 @@
         <a class="nav-link" [routerLink]="['/inicio']">Inicio <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item" *ngFor="let category of categories">
-        <a class="nav-link" href="#">{{category.name}}</a>
+        <a class="nav-link" [routerLink]="['/categoria',category.id]">{{category.name}}</a>
       </li>
   </ul>
 

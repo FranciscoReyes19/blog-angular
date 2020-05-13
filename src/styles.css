@@ -5,6 +5,7 @@
 	margin-bottom: 10px;
 	margin-top: 10px;
 }
+
 .avatar_mask{
    height: 40px;
    overflow: hidden;
@@ -14,6 +15,19 @@
 	height: 40px;
 	width: 40px;
 }
+
+.avatar_mask_profile{
+   height: 120px;
+   width: 120px;
+   overflow: hidden;
+   border-radius: 900px; 
+}
+.avatar_mask_profile img{
+	height: 120px;
+	width: 120px;
+}
+
+
 .post-img img{
 	height: 180px;
 	width: 180px;

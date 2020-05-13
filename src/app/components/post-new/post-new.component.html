@@ -40,7 +40,7 @@
 		</div>
 		<div class="form-group">
 			<label for="image">Imagen</label>
-			<div *ngIf='post.image' class="post-img">
+			<div *ngIf='is_edit && post.image' class="post-img">
 				<img src="{{urlAux + 'post/image/' + post.image}}">
 			</div>
 			<hr>

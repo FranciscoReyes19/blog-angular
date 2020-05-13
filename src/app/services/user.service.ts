@@ -43,6 +43,10 @@ export class UserService {
 	}
 
 	update(token, user):Observable<any>{
+		//remplazar html entities to UTF-8 >>INICIO
+        user.description = global.htmlEntities(user.description);
+        //remplazar html entities to UTF-8 >>FIN
+
 		let json = JSON.stringify(user);
 		let params = "json="+json;
 
@@ -76,4 +80,17 @@ export class UserService {
 
 		return this.token;
 	}
+
+	getPostsByUser(id):Observable<any>{
+        let headers = new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded');
+        
+        return this._http.get(this.url + 'post/user/'+id, {headers: headers});
+
+    }
+	getPostByUser(id):Observable<any>{
+        let headers = new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded');
+        
+        return this._http.get(this.url + 'user/detail/'+id, {headers: headers});
+
+    }
 }

@@ -19,7 +19,10 @@ export class PostService {
     }
 
     create(token, post): Observable<any>{
-    	let json = JSON.stringify(post);
+    	//remplazar html entities to UTF-8 >>INICIO
+        post.content = global.htmlEntities(post.content);
+        //remplazar html entities to UTF-8 >>FIN
+        let json = JSON.stringify(post);
     	let params = "json="+json;
     	let headers = new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded')
     	                               .set('Authorization',token);
@@ -43,6 +46,9 @@ export class PostService {
     }
 
     update(token, post, id):Observable<any>{
+        //remplazar html entities to UTF-8 >>INICIO
+        post.content = global.htmlEntities(post.content);
+        //remplazar html entities to UTF-8 >>FIN
         let json = JSON.stringify(post);
         let params = "json="+json;
 

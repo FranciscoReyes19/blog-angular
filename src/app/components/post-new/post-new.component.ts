@@ -24,11 +24,12 @@ export class PostNewComponent implements OnInit {
 	public status;
   public attachPinText1: string;
 	public froala_options : Object = {
-        charCounterCount: true,
-	    toolbarButtons: ['bold', 'italic', 'underline', 'paragraphFormat','alert'],
-	    toolbarButtonsXS: ['bold', 'italic', 'underline', 'paragraphFormat','alert'],
-	    toolbarButtonsSM: ['bold', 'italic', 'underline', 'paragraphFormat','alert'],
-	    toolbarButtonsMD: ['bold', 'italic', 'underline', 'paragraphFormat','alert']
+      charCounterCount: true,
+      language: 'es',
+	    toolbarButtons: ['bold', 'italic', 'underline', 'paragraphFormat'],
+	    toolbarButtonsXS: ['bold', 'italic', 'underline', 'paragraphFormat'],
+	    toolbarButtonsSM: ['bold', 'italic', 'underline', 'paragraphFormat'],
+	    toolbarButtonsMD: ['bold', 'italic', 'underline', 'paragraphFormat']
 	};
 	public afuConfig = {
       multiple: false,
@@ -61,7 +62,7 @@ export class PostNewComponent implements OnInit {
 
   ngOnInit() {
   	this.post = new Post(1, this.identity.sub, 1, '', '', null, null);
-  	console.log(this.identity);
+  	//console.log(this.identity);
   	this.getCategories();
   }
 
